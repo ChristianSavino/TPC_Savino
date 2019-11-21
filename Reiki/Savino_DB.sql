@@ -87,3 +87,32 @@ insert into precios values(200)
 insert into precios values(300)
 --Tickets-
 insert into tickets values(1, '22/10/2019', 1, 1)
+go
+
+Create Procedure spInsertarUsuario @idtipo int, @nombre varchar(64), @apellido varchar(64), @clave varchar(64), @email varchar(64)
+as
+Begin
+Insert Into usuarios (idtipo,nombre,apellido,clave,email,estado) values (@idtipo,@nombre,@apellido,@clave,@email,1)
+end
+go
+
+Create Procedure spInsertarTurno @fecha date, @hora varchar(5), @idpaciente int
+as
+Begin
+insert into turnos (fecha,hora,idpaciente,idreiki,estado) values (@fecha,@hora,@idpaciente,1,'en espera')
+end
+go
+
+Create Procedure spInsertarTicket @id bigint, @precio int, @pago int
+as
+Begin
+insert into tickets (idturno,idprecio,idpago,fecha) values ((Select t.id from turnos t left join pacientes p on t.idpaciente = p.id where p.id = @id),@precio,@pago,GETDATE())
+end
+go
+
+Create Procedure spInsertarPaciente @dni int,@nombre varchar(64),@apellido varchar(64),@telefono int,@fecha date, @sexo varchar(1) 
+as
+Begin
+insert into pacientes (dni,nombre,apellido,telefono,fechanac,sexo,estado) values (@dni,@nombre,@apellido,@telefono,@fecha,@sexo,1)
+end
+go
