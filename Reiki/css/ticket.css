@@ -1,0 +1,28 @@
+@font-face {
+    font-family: system;
+    font-style: normal;
+    font-weight: 300;
+    src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"), local("Roboto-Light"), local("DroidSans"), local("Tahoma");
+  }
+
+.ticket{
+    margin: auto;
+    text-align: center;
+    border-bottom: dashed 2px gray;
+    width:288px;
+    height:384px;
+    font-family: 'system';
+}
+.fecha{
+    float:left;    
+    font-family: 'system';
+}
+.hora{
+    float:right;
+    font-family: 'system';
+}
+.footer{
+    width:288px;
+    position: absolute;
+    top: 320px;
+}

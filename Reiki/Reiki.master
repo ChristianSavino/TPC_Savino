@@ -1,0 +1,62 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Reiki.master.cs" Inherits="Reiki" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    
+      <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <style> .azul{background-color:rgb(32, 156, 238);}</style>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="collapse" id="navbarOpcion">
+            <div class="azul p-4">
+                <h5 class="text-white h4">Opciones</h5>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <a class="nav-link badge badge-dark" href="home.aspx">Pagina Inicio</a>
+                  </div>
+                  <div class="form-group">
+                    <a class="nav-link badge badge-dark" href="viewPacientes.aspx">Agregar Paciente</a>
+                  </div>
+                    <div class="form-group">
+                    <a class="nav-link badge badge-dark" href="viewturnos.aspx">Dar Turno</a>
+                  </div>
+                    <div class="form-group">
+                    <a class="nav-link badge badge-dark" href="viewPagos.aspx">Cobrar Turno</a>
+                  </div>
+                    <div class="form-group">
+                    <a class="nav-link badge badge-dark" href="VerTurnos.aspx">Ver Turnos</a>
+                  </div>
+                    <div class="form-group">
+                    <a class="nav-link badge badge-dark" href="VerTickets.aspx">Ver Recibos</a>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                     <a class="btn btn-outline-dark" runat="server" href="index.aspx">Salir</a>
+                    <%--<asp:Button CssClass="btn btn-outline-dark" ID="Button2" runat="server" Text="Salir" />--%>
+                </div>
+            </div>
+        </div>
+    <nav class="navbar navbar-light azul">
+        <a class="navbar-brand" style="margin-left:20rem;">霊気</a>
+        <div class="form-inline">
+            <button class="btn btn-outline-dark my-2 my-sm-0" type="button" data-toggle="collapse" data-target="#navbarOpcion" aria-controls="navbarOpcion" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+        </div>
+    </nav>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    <!--Footer-->
+        <footer class="text-muted">
+            <label class="ml-5">© 2019 - TODOS LOS DERECHOS RESERVADOS</label>
+        </footer>
+    </form>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
