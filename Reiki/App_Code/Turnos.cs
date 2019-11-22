@@ -90,4 +90,21 @@ public class Turnos
         setHora(hora);
         setIdPaciente(id);
     }
+
+    public void ActualizarMarca(Turnos t)
+    {
+        try
+        {
+            SqlCommand cmd = new SqlCommand();
+            SqlParameter parameter = new SqlParameter();
+            parameter = cmd.Parameters.Add("@idpaciente", SqlDbType.Int);
+            parameter.Value = t.getIdPaciente();
+            con.ExecuteNonquery(cmd, "Update turnos set estado = 'abonado' Where estado = 'Concurrido' and idpaciente = @idpaciente");
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+
+    }
 }

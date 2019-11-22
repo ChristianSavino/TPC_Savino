@@ -1,3 +1,5 @@
+use master
+go
 create database Savino_DB
 go
 
@@ -41,7 +43,7 @@ create table turnos(
 	hora varchar(5) not null,
 	idpaciente int not null FOREIGN KEY REFERENCES pacientes(id),
 	idreiki int not null FOREIGN KEY REFERENCES usuarios(id),
-	estado varchar(16) not null check(estado in ('en espera', 'concurrido', 'cancelado'))
+	estado varchar(16) not null check(estado in ('en espera', 'concurrido', 'cancelado', 'abonado'))
 )
 go
 
@@ -73,8 +75,8 @@ insert into tipos values('Reikista')
 insert into usuarios values(1, 'Christian', 'Savino', 'Keru18111997', 'christiansavino1811@gmail.com', 1)
 insert into usuarios values(1, 'Lucas', 'Conti', 'Vento2010', 'lucasok3007@gmail.com', 1)
 --Pacientes--
-insert into pacientes values(40834656, 'Roberto', 'Planta', 1558056089, '11/18/1997', 'M', 'elkeruforever@gmail.com','Keru18111997',1)
-insert into pacientes values(17830484, 'Matias', 'Sterzer', 21830454, '12/06/1997', 'M', 'sterzermatias@gmail.com','123456',1)
+insert into pacientes values(40834656, 'Roberto', 'Planta', 1558056089, '18/11/1997', 'M', 'elkeruforever@gmail.com','Keru18111997',1)
+insert into pacientes values(17830484, 'Matias', 'Sterzer', 21830454, '06/12/1997', 'M', 'sterzermatias@gmail.com','123456',1)
 insert into pacientes values(12345678, 'Maxi', 'Aprobame', 1503455878, '01/01/1975', 'F','maxiutn@gmail.com','666',1)
 --Turnos--
 insert into turnos values('22/10/2019', '12:05' , 3, 1, 'concurrido')

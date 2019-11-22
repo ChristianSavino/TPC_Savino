@@ -21,7 +21,7 @@ public partial class viewPagos : System.Web.UI.Page
     private void VincularPaciente()
     {
         Paciente ct = new Paciente();
-        SqlCommand cmd = ct.getPacientescmd();
+        SqlCommand cmd = ct.getPacientesturnoscmd();
 
         SqlDataAdapter sda = new SqlDataAdapter(cmd);
         DataTable dt = new DataTable();
@@ -77,10 +77,12 @@ public partial class viewPagos : System.Web.UI.Page
         Tickets usr = new Tickets();
         if (ddlPaciente.SelectedIndex != 0 && ddlTipoPago.SelectedIndex != 0 && ddlPago.SelectedIndex != 0)
         {
-            usr.getTicket(1, int.Parse(ddlPago.SelectedIndex.ToString()), int.Parse(ddlTipoPago.SelectedIndex.ToString()));
-
+            usr.getTicket(int.Parse(ddlPaciente.SelectedItem.Value), int.Parse(ddlPago.SelectedIndex.ToString()), int.Parse(ddlTipoPago.SelectedIndex.ToString()));
+            Turnos t = new Turnos();
+            t.setIdPaciente(int.Parse(ddlPaciente.SelectedItem.Value));
             if (usr.agregarTicket(usr) > 0)
             {
+                t.ActualizarMarca(t);
                 Response.Write("<script>alert('Pago guardado corectamente')</script>");
             }
             else

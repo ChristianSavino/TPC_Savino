@@ -159,7 +159,10 @@ public class Usuarios
         }
 
     }
-
+    public SqlCommand getusuariocmd()
+    {
+        return con.DevuelveComando("select id, nombre + ', ' + apellido as 'Apellido y nombre' from usuarios where estado = 1");
+    }
     public void getUsuarios(int tipo, string nombre, string apellido, string email, string clave)
     {
         setTipo(tipo);

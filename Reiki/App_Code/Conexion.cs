@@ -133,6 +133,25 @@ public class Conexion
             throw;
         }
     }
+
+    public void ExecuteNonquery(SqlCommand Comando, String ConsultaSQL)
+    {
+        SqlConnection con = ObtenerConexion();
+        SqlCommand cmd = new SqlCommand();
+        try
+        {
+            cmd = Comando;
+            cmd.Connection = con;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = ConsultaSQL;
+            cmd.ExecuteNonQuery();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
     public SqlCommand DevuelveComando(string consulta)
     {
         try

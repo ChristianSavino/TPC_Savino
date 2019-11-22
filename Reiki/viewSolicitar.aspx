@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button CssClass="btn btn-outline-dark" ID="Button1" runat="server" Text="SOLICITAR" />
+                    <asp:Button CssClass="btn btn-outline-dark" ID="Button1" runat="server" OnClick="btnSolicitar_click" Text="SOLICITAR" />
                 </div>
             </div>
         </div>

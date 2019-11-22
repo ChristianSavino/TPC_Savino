@@ -65,8 +65,8 @@ public class Tickets
     }
     public int agregarTicket(Tickets cat)
     {
-        SqlCommand Comando = new SqlCommand();
 
+        SqlCommand Comando = new SqlCommand();
         SqlParameter SqlParametros = new SqlParameter();
         SqlParametros = Comando.Parameters.Add("@id", SqlDbType.BigInt);
         SqlParametros.Value = cat.getId();
@@ -74,8 +74,6 @@ public class Tickets
         SqlParametros.Value = cat.getPrecio();
         SqlParametros = Comando.Parameters.Add("@pago", SqlDbType.Int);
         SqlParametros.Value = cat.getIdPago();
-
-
 
         return con.EjecutarSP(Comando, "spInsertarTicket");
     }

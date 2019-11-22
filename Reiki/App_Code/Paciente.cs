@@ -112,6 +112,10 @@ public class Paciente
     {
         return con.DevuelveComando("select id, convert(varchar(64),dni) + ', ' + nombre + ', ' + apellido as 'Apellido y nombre' from pacientes where estado = 1");
     }
+    public SqlCommand getPacientesturnoscmd()
+    {
+        return con.DevuelveComando("select p.id, convert(varchar(64),p.dni) + ', ' + p.nombre + ', ' + p.apellido as 'Apellido y nombre' from pacientes p inner join turnos t on t.idpaciente = p.id where p.estado = 1 and t.estado = 'concurrido'");
+    }
     public DataTable getTablaPacientes(int id)
     {
         DataTable tabla = con.ObtenerTabla("Pacientes", "select * from pacientes where id=" + id);
