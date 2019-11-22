@@ -11,40 +11,48 @@ public partial class viewPacientes : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-
             VincularSexo();
         }
     }
     protected void btnagregar_Click(object sender, EventArgs e)
     {
-        Paciente usr = new Paciente();
-        if (txtApellido.Text != "" && txtDate.Text != "" && txtDni.Text != "" && txtNombre.Text != "" && txtTel.Text != "")
+        try
         {
-            usr.getPaciente(int.Parse(txtDni.Text), txtNombre.Text, txtApellido.Text, int.Parse(txtTel.Text), DateTime.Parse(txtDate.Text), ddlSexo.SelectedIndex.ToString());
-            if (usr.getSexo() == "1")
+            if (txtDni.Text != "" && txtNombre.Text != "" && txtApellido.Text != "" && txtTel.Text != "" && txtDate.Text != "" && ddlSexo.SelectedIndex != 0 && txtMail.Text != "" && txtClave.Text != "")
             {
-                usr.setSexo("F");
+                Paciente p = new Paciente();
+                p.setDni(int.Parse(txtDni.Text));
+                p.setNombre(txtNombre.Text);
+                p.setApellido(txtApellido.Text);
+                p.setTelefono(int.Parse(txtTel.Text));
+                p.setFecha(DateTime.Parse(txtDate.Text));
+                if (ddlSexo.SelectedIndex == 1)
+                {
+                    p.setSexo("F");
+                }
+                else
+                {
+                    p.setSexo("M");
+                }
+                p.setEmail(txtMail.Text);
+                p.setClave(txtClave.Text);
+                p.agregarPaciente(p);
+                Response.Write("<script>alert('Paciente cargado')</script>");
             }
             else
             {
-                usr.setSexo("M");
+                Response.Write("<script>alert('Se debe completar todos los campos')</script>");
             }
-            if (usr.agregarPaciente(usr) > 0)
-            {
-                Response.Write("<script>alert('Usuario guardado corectamente')</script>");
-                VaciarTxt();
-            }
-            else
-            {
-                Response.Write("<script>alert('No se pudo guardar el Usuario')</script>");
-                VaciarTxt();
-            }
+
         }
-        else
+        catch (Exception)
         {
-            Response.Write("<script>alert('Se debe completar todos los campos')</script>");
+            Response.Write("<script>alert('Hubo un problema')</script>");
+            throw;
         }
+
     }
+
     private void VincularSexo()
     {
         ListItem i;
@@ -63,5 +71,8 @@ public partial class viewPacientes : System.Web.UI.Page
         txtDate.Text = "";
         txtNombre.Text = "";
         txtTel.Text = "";
+        ddlSexo.SelectedIndex = 0;
+        txtMail.Text = "";
+        txtClave.Text = "";
     }
 }

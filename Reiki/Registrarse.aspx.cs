@@ -33,12 +33,47 @@ public partial class Registrarse : System.Web.UI.Page
         txtDate.Text = "";
         txtNombre.Text = "";
         txtTel.Text = "";
+        ddlSexo.SelectedIndex = 0;
+        txtMail.Text = "";
+        txtClave.Text = "";
     }
 
     public void btnRegistrar_Onclick(object sender, EventArgs e)
     {
-        Usuarios u = new Usuarios();
-        u.setNombre(txtNombre.Text);
-        u.setTipo(2);
+        try
+        {
+            if(txtDni.Text != "" && txtNombre.Text != "" && txtApellido.Text != "" && txtTel.Text != "" && txtDate.Text != "" && ddlSexo.SelectedIndex != 0 && txtMail.Text != "" && txtClave.Text != "")
+            {
+                Paciente p = new Paciente();
+                p.setDni(int.Parse(txtDni.Text));
+                p.setNombre(txtNombre.Text);
+                p.setApellido(txtApellido.Text);
+                p.setTelefono(int.Parse(txtTel.Text));
+                p.setFecha(DateTime.Parse(txtDate.Text));
+                if (ddlSexo.SelectedIndex == 1)
+                {
+                    p.setSexo("F");
+                }
+                else
+                {
+                    p.setSexo("M");
+                }
+                p.setEmail(txtMail.Text);
+                p.setClave(txtClave.Text);
+                p.agregarPaciente(p);
+                Response.Write("<script>alert('Paciente cargado')</script>");
+            }
+            else
+            {
+                Response.Write("<script>alert('Se debe completar todos los campos')</script>");
+            }
+
+        }
+        catch (Exception)
+        {
+            Response.Write("<script>alert('Hubo un problema')</script>");
+            throw;
+        }
+
     }
 }

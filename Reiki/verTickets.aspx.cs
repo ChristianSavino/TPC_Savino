@@ -15,12 +15,8 @@ public partial class verTickets : System.Web.UI.Page
     {
         if (e.CommandName == "Select")
         {
-            if (this.Session["idticket"] == null)
-            {
-                // Creo un DataTable sobre la variable session
-                int pos = Convert.ToInt32(e.CommandArgument.ToString());
-                this.Session["idticket"] = GridView1.Rows[pos].Cells[1].Text;
-            }
+            int pos = Convert.ToInt32(e.CommandArgument.ToString());
+            this.Session["idticket"] = GridView1.Rows[pos].Cells[1].Text;
             Response.Redirect("viewTickets.aspx");
         }
     }

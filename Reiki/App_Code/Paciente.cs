@@ -138,10 +138,10 @@ public class Paciente
         SqlParametros.Value = cat.getFecha();
         SqlParametros = Comando.Parameters.Add("@sexo", SqlDbType.VarChar);
         SqlParametros.Value = cat.getSexo();
-        SqlParametros = Comando.Parameters.Add("@email", SqlDbType.Date);
-        SqlParametros.Value = cat.getFecha();
-        SqlParametros = Comando.Parameters.Add("@clavo", SqlDbType.VarChar);
-        SqlParametros.Value = cat.getSexo();
+        SqlParametros = Comando.Parameters.Add("@email", SqlDbType.VarChar);
+        SqlParametros.Value = cat.getEmail();
+        SqlParametros = Comando.Parameters.Add("@clave", SqlDbType.VarChar);
+        SqlParametros.Value = cat.getClave();
 
         return con.EjecutarSP(Comando, "spInsertarPaciente");
     }

@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Reiki.master" AutoEventWireup="true" CodeFile="viewPacientes.aspx.cs" Inherits="viewPacientes" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Pacientes</title>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <!--Registro de usuarios-->
     <div class="col mt-5" style="max-width: 50%; text-align: center; margin-left: 25%;">
         <div class="card border-primary">
@@ -28,9 +28,15 @@
                 <div class="input-group mb-3">
                     <asp:DropDownList ID="ddlSexo" runat="server" CssClass="custom-select"></asp:DropDownList>
                 </div>
+                <div class="input-group mb-3">
+                    <asp:TextBox ID="txtMail" runat="server" placeholder="Email@mail.com" required="required" CssClass="form-control" TextMode="Email"></asp:TextBox>
+                </div>
+                <div class="input-group mb-3">
+                    <asp:TextBox ID="txtClave" runat="server" placeholder="Clave" required="required" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                </div>
                 <div class="modal-footer">
                     <asp:Button ID="btnagregar" runat="server" Text="Agregar" CssClass="btn btn-outline-secondary" OnClick="btnagregar_Click" />
-                </div> 
+                </div>
             </div>
         </div>
     </div>

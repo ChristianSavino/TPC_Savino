@@ -65,7 +65,7 @@
                         <asp:TextBox ID="txtClave" runat="server" placeholder="Clave" required="required" CssClass="form-control" TextMode="Password"></asp:TextBox>
                     </div>
                     <div class="modal-footer">
-                        <asp:Button ID="btnagregar" runat="server" Text="Registrarse" CssClass="btn btn-outline-secondary" />
+                        <asp:Button ID="btnagregar" runat="server" Text="Registrarse" CssClass="btn btn-outline-secondary" OnClick="btnRegistrar_Onclick" />
                     </div>
                 </div>
             </div>
