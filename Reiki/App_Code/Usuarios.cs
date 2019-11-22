@@ -10,12 +10,12 @@ using System.Data.SqlClient;
 /// </summary>
 public class Usuarios
 {
-	public Usuarios()
-	{
-		//
-		// TODO: Agregar aquí la lógica del constructor
-		//
-	}
+    public Usuarios()
+    {
+        //
+        // TODO: Agregar aquí la lógica del constructor
+        //
+    }
     private int IdUsuario;
     private String Nombre;
     private String Apellido;
@@ -151,7 +151,7 @@ public class Usuarios
                 }
             }
             return null;
-            
+
         }
         catch (Exception ex)
         {

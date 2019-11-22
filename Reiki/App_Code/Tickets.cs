@@ -10,17 +10,19 @@ using System.Data.SqlClient;
 /// </summary>
 public class Tickets
 {
-	public Tickets()
-	{
-		//
-		// TODO: Agregar aquí la lógica del constructor
-		//
-	}
+    public Tickets()
+    {
+        //
+        // TODO: Agregar aquí la lógica del constructor
+        //
+    }
     private int IdTurno;
     private int Precio;
     private DateTime Fecha;
     private int IdPago;
     Conexion con = new Conexion();
+    private int IdP;
+    private string Nombre;
 
     public int getId()
     {
@@ -53,6 +55,23 @@ public class Tickets
     public void setIdPago(int id)
     {
         IdPago = id;
+    }
+    //get y set para traer datos del paciente y generar la factura
+    public int getIdPaciente()
+    {
+        return IdP;
+    }
+    public void setIdPaciente(int id)
+    {
+        IdP = id;
+    }
+    public string getNombre()
+    {
+        return Nombre;
+    }
+    public void setNombre(string id)
+    {
+        Nombre = id;
     }
     public DataTable getTablaTickets(int id)
     {
@@ -92,7 +111,7 @@ public class Tickets
             SqlParameter parameter = new SqlParameter();
             parameter = cmd.Parameters.Add("@id", SqlDbType.BigInt);
             parameter.Value = long.Parse(id.ToString());
-            SqlDataReader reader = con.ObtenerReader(cmd, "Select id, fecha, Convert(int,(select p.precio from precios p where p.id = idprecio)) as 'precio' from tickets where id = @id");
+            SqlDataReader reader = con.ObtenerReader(cmd, "Select id, fecha, Convert(int,(select p.precio from precios p where p.id = idprecio)) as 'precio' from tickets where idturno = @id");
             if (reader.HasRows)
             {
                 if (reader.Read())
@@ -100,6 +119,36 @@ public class Tickets
                     tck.setId(id);
                     tck.setFecha(reader.GetDateTime(reader.GetOrdinal("fecha")));
                     tck.setPrecio(reader.GetInt32(reader.GetOrdinal("precio")));
+                }
+            }
+            //Select id, fecha, (select p.precio from precios p where p.id = idprecio) as 'precio' from tickets where id = @id
+            return tck;
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+    }
+    public Tickets getFacturaImpresion(int id)
+    {
+        try
+        {
+            Tickets tck = new Tickets();
+            SqlCommand cmd = new SqlCommand();
+            SqlParameter parameter = new SqlParameter();
+            parameter = cmd.Parameters.Add("@id", SqlDbType.BigInt);
+            parameter.Value = long.Parse(id.ToString());
+            SqlDataReader reader = con.ObtenerReader(cmd, "Select t.id, t.fecha as 'fec', Convert(int,(select p.precio from precios p where p.id = t.idprecio)) as 'precio', s.idpaciente as 'idp', p.apellido + ' ' + p.nombre as 'apenom' from tickets as t inner join turnos as s on s.id=t.idturno inner join pacientes as p on p.id=s.idpaciente where t.idturno = @id");
+            if (reader.HasRows)
+            {
+                if (reader.Read())
+                {
+                    tck.setId(id);
+                    tck.setFecha(reader.GetDateTime(reader.GetOrdinal("fec")));
+                    tck.setPrecio(reader.GetInt32(reader.GetOrdinal("precio")));
+                    //datos del paciente
+                    tck.setIdPaciente(reader.GetInt32(reader.GetOrdinal("idp")));
+                    tck.setNombre(reader.GetString(reader.GetOrdinal("apenom")));
                 }
             }
             //Select id, fecha, (select p.precio from precios p where p.id = idprecio) as 'precio' from tickets where id = @id

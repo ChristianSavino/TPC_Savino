@@ -8,12 +8,12 @@ using System.Web;
 /// </summary>
 public class Session
 {
-	public Session()
-	{
-		//
-		// TODO: Agregar aquí la lógica del constructor
-		//
-	}
+    public Session()
+    {
+        //
+        // TODO: Agregar aquí la lógica del constructor
+        //
+    }
     public string Crear()
     {
         string dt = new string(new char[] { });

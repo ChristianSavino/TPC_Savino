@@ -16,4 +16,13 @@ public partial class homePaciente : System.Web.UI.Page
         p = null;
         text = null;
     }
+    protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        if (e.CommandName == "Select")
+        {
+            int pos = Convert.ToInt32(e.CommandArgument.ToString());
+            this.Session["idfactura"] = GridView1.Rows[pos].Cells[1].Text;
+            Response.Redirect("verTicketm.aspx");
+        }
+    }
 }

@@ -10,10 +10,10 @@ using System.Data.SqlClient;
 /// </summary>
 public class Conexion
 {
-	public Conexion()
-	{
+    public Conexion()
+    {
         // TODO: Agregar aquí la lógica del constructor
-	}
+    }
     private string rutaBD = "Data Source=localhost\\sqlexpress;Initial Catalog=Savino_DB;Integrated Security=True";
     public SqlConnection ObtenerConexion()
     {
@@ -21,6 +21,19 @@ public class Conexion
         try
         {
             cn.Open();
+            return cn;
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+    }
+    public SqlConnection CerrarConexion()
+    {
+        SqlConnection cn = new SqlConnection(rutaBD);
+        try
+        {
+            cn.Close();
             return cn;
         }
         catch (Exception ex)
@@ -125,6 +138,19 @@ public class Conexion
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = ConsultaSQL;
+            SqlDataReader reader = cmd.ExecuteReader();
+            return reader;
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+    public SqlDataReader ObtenerRd()
+    {
+        SqlCommand cmd = new SqlCommand();
+        try
+        {
             SqlDataReader reader = cmd.ExecuteReader();
             return reader;
         }

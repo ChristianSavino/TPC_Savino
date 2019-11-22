@@ -8,8 +8,9 @@
                 <asp:label CssClass="h1" runat="server" Text="Bienvenido Reikista!" ID="welcometext"></asp:label>
 
     </div>
-    <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1" CssClass="table">
+    <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1" CssClass="table" OnRowCommand="GridView1_RowCommand">
         <Columns>
+            <asp:CommandField ShowSelectButton="True" />
             <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" />
             <asp:BoundField DataField="fecha" HeaderText="fecha" SortExpression="fecha" />
             <asp:BoundField DataField="hora" HeaderText="hora" SortExpression="hora" />

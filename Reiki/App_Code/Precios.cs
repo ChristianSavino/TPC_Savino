@@ -10,12 +10,12 @@ using System.Data.SqlClient;
 /// </summary>
 public class Precios
 {
-	public Precios()
-	{
-		//
-		// TODO: Agregar aquí la lógica del constructor
-		//
-	}
+    public Precios()
+    {
+        //
+        // TODO: Agregar aquí la lógica del constructor
+        //
+    }
     private float Precio;
     Conexion con = new Conexion();
     public float getPrecio()
@@ -29,6 +29,15 @@ public class Precios
     public SqlCommand getPrecioscmd()
     {
         return con.DevuelveComando("Select * from precios");
+    }
+    //datos para el chart 
+    public SqlCommand getPrecioscmdchart()
+    {
+        return con.DevuelveComando("SELECT MONTH(t.fecha) AS Mes, SUM(p.precio) AS TotalR FROM precios AS p INNER JOIN tickets AS t ON p.id = t.idprecio GROUP BY t.fecha, p.precio");
+    }
+    public SqlCommand getSexocmdchart()
+    {
+        return con.DevuelveComando("select COUNT(sexo) as cant, sexo from pacientes group by sexo");
     }
     //Guarda precio
     public int GrabarPrecio(float pre)

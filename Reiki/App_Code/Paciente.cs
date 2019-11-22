@@ -10,12 +10,12 @@ using System.Data.SqlClient;
 /// </summary>
 public class Paciente
 {
-	public Paciente()
-	{
-		//
-		// TODO: Agregar aquí la lógica del constructor
-		//
-	}
+    public Paciente()
+    {
+        //
+        // TODO: Agregar aquí la lógica del constructor
+        //
+    }
     private int Id;
     private String Nombre;
     private String Apellido;
@@ -169,7 +169,7 @@ public class Paciente
                     p.setId(reader.GetInt32(reader.GetOrdinal("id")));
                     p.setDni(reader.GetInt32(reader.GetOrdinal("dni")));
                     p.setNombre(reader.GetString(reader.GetOrdinal("nombre")));
-                    p.setApellido(reader.GetString(reader.GetOrdinal("apellido")));                  
+                    p.setApellido(reader.GetString(reader.GetOrdinal("apellido")));
                     p.setTelefono(reader.GetInt32(reader.GetOrdinal("telefono")));
                     p.setFecha(reader.GetDateTime(reader.GetOrdinal("fechanac")));
                     p.setSexo(reader.GetString(reader.GetOrdinal("sexo")));
@@ -196,4 +196,5 @@ public class Paciente
         setFecha(email);
         setSexo(clave);
     }
+
 }

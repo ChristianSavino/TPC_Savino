@@ -25,6 +25,9 @@
                         <a class="nav-link badge badge-dark" href="home.aspx">Pagina Inicio</a>
                     </div>
                     <div class="form-group">
+                        <a class="nav-link badge badge-dark" href="formulario.aspx">Estadistica</a>
+                    </div>
+                    <div class="form-group">
                         <a class="nav-link badge badge-dark" href="viewPacientes.aspx">Agregar Paciente</a>
                     </div>
                     <div class="form-group">

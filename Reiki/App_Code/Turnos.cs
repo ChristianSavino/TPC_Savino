@@ -10,12 +10,12 @@ using System.Data.SqlClient;
 /// </summary>
 public class Turnos
 {
-	public Turnos()
-	{
-		//
-		// TODO: Agregar aquí la lógica del constructor
-		//
-	}
+    public Turnos()
+    {
+        //
+        // TODO: Agregar aquí la lógica del constructor
+        //
+    }
     private string Fecha;
     private string Hora;
     private int IdPaciente;
@@ -68,7 +68,7 @@ public class Turnos
     {
         return con.Conexiondb();
     }
-    public int agregarTurno(Turnos cat,Usuarios u)
+    public int agregarTurno(Turnos cat, Usuarios u)
     {
         SqlCommand Comando = new SqlCommand();
 

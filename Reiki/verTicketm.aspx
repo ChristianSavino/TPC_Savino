@@ -48,9 +48,9 @@
                     
                 <table class="w-100">
                     <tr>
-                        <td class="text-left"><b>KERUREIKI</b> </td>
+                        <td class="text-left"><b>KERU-REIKI CO.</b> </td>
                         <td class="text-center"><strong>B</strong></td>
-                        <td class="text-right"><strong>FACTURA </strong>2020202020</td>
+                        <td class="text-right"><strong>FACTURA </strong><asp:Label ID="lblNumero" runat="server">2020202020</asp:Label></td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
@@ -58,14 +58,14 @@
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
-                        <td class="text-left">Av. Hipólito Yrigoyen 288<br />
-                            B1617 Gral. Pacheco, Buenos Aires<br />
+                        <td class="text-left">Pedro Henriquez Ureña 2251<br />
+                            B1614 Villa de Mayo, Buenos Aires<br />
                             Tel: 0888-111-333<br />
                             <br />
                             IVA Responsable inscripto</td>
                         <td>&nbsp;</td>
-                        <td class="text-right"><strong>Fecha de Vto: </strong>15/11/2019<br />
-                            <strong>Fecha de emicion: </strong>15/11/2019<br />
+                        <td class="text-right"><strong>Fecha de Vto: </strong>15/11/2020<br />
+                            <strong>Fecha de emicion: </strong><asp:Label ID="lblFecha" runat="server">22/11/2019</asp:Label><br />
                             <br />
                             CUIT:202020202020<br />
                             ING.BRUTO:202020-20<br />
@@ -78,8 +78,8 @@
                     </tr>
                     <tr>
                         <td class="text-left"><strong>DATOS DEL CLIENTES<br />
-                            CUENTA: </strong>ID#<strong><br />
-                            </strong>NOMBRE Y APELLIDO</td>
+                            CUENTA: </strong><asp:Label ID="lblId" runat="server">#1</asp:Label><strong><br />
+                            </strong><asp:Label ID="lblNombre" runat="server">Parrota Fede</asp:Label></td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
@@ -91,7 +91,7 @@
                     <tr>
                         <td class="auto-style1"></td>
                         <td class="auto-style1"></td>
-                        <td class="auto-style2">TOTAL A PAGAR $1500</td>
+                        <td class="auto-style2">TOTAL A PAGAR <asp:Label ID="lblTotal" runat="server">$1500</asp:Label></td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>

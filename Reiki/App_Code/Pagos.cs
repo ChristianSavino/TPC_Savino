@@ -10,12 +10,12 @@ using System.Data.SqlClient;
 /// </summary>
 public class Pagos
 {
-	public Pagos()
-	{
-		//
-		// TODO: Agregar aquí la lógica del constructor
-		//
-	}
+    public Pagos()
+    {
+        //
+        // TODO: Agregar aquí la lógica del constructor
+        //
+    }
     Conexion con = new Conexion();
     public SqlCommand getPagoscmd()
     {
