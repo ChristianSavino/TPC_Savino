@@ -72,8 +72,7 @@ go
 --Tipos de usuarios--
 insert into tipos values('Reikista')
 --Usuarios
-insert into usuarios values(1, 'Christian', 'Savino', 'Keru18111997', 'christiansavino1811@gmail.com', 1)
-insert into usuarios values(1, 'Lucas', 'Conti', 'Vento2010', 'lucasok3007@gmail.com', 1)
+insert into usuarios values(1, 'Administrador', 'General', 'vento2010', 'admingen', 1)
 --Pacientes--
 insert into pacientes values(40834656, 'Roberto', 'Planta', 1558056089, '18/11/1997', 'M', 'elkeruforever@gmail.com','Keru18111997',1)
 insert into pacientes values(17830484, 'Matias', 'Sterzer', 21830454, '06/12/1997', 'M', 'sterzermatias@gmail.com','123456',1)
