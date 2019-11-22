@@ -46,8 +46,10 @@ public partial class viewTurnos : System.Web.UI.Page
         if (txtFecha.Text != "" && txtTime.Text != "")
         {
             usr.getPaciente(txtFecha.Text, txtTime.Text, ddlPacientes.SelectedIndex);
+            Usuarios u = new Usuarios();
+            u = (Usuarios)Session["Usuario"];
 
-            if (usr.agregarTurno(usr) > 0)
+            if (usr.agregarTurno(usr,u) > 0)
             {
                 Response.Write("<script>alert('Turno guardado corectamente')</script>");
                 VaciarTxt();

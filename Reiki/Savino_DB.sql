@@ -29,6 +29,8 @@ create table pacientes(
 	telefono int not null,
 	fechanac date not null,
 	sexo varchar(1) not null CHECK(sexo IN ('F', 'M')),
+	email varchar(100) not null,
+	clave varchar(100) not null,
 	estado bit not null
 )
 go
@@ -66,15 +68,14 @@ go
 
 --Insert--
 --Tipos de usuarios--
-insert into tipos values('Reiki')
-insert into tipos values('Admin')
+insert into tipos values('Reikista')
 --Usuarios
-insert into usuarios values(1, 'Fede', 'Parrotta', 'Shaco', 'Payasito@gmail.com', 1)
-insert into usuarios values(2, 'Seba', 'Montoya', 'Cuervo', 'Fumado@gmail.com', 1)
+insert into usuarios values(1, 'Christian', 'Savino', 'Keru18111997', 'christiansavino1811@gmail.com', 1)
+insert into usuarios values(1, 'Lucas', 'Conti', 'Vento2010', 'lucasok3007@gmail.com', 1)
 --Pacientes--
-insert into pacientes values(1111, 'Ary', 'Segovia', 1111, '12/12/2019', 'M', 1)
-insert into pacientes values(2222, 'Christian', 'savino', 2222, '11/11/2019', 'M', 1)
-insert into pacientes values(3333, 'The', 'Bird', 3333, '10/10/2019', 'F', 1)
+insert into pacientes values(40834656, 'Roberto', 'Planta', 1558056089, '11/18/1997', 'M', 'elkeruforever@gmail.com','Keru18111997',1)
+insert into pacientes values(17830484, 'Matias', 'Sterzer', 21830454, '12/06/1997', 'M', 'sterzermatias@gmail.com','123456',1)
+insert into pacientes values(12345678, 'Maxi', 'Aprobame', 1503455878, '01/01/1975', 'F','maxiutn@gmail.com','666',1)
 --Turnos--
 insert into turnos values('22/10/2019', '12:05' , 3, 1, 'concurrido')
 --Tipo de pago--
@@ -96,10 +97,10 @@ Insert Into usuarios (idtipo,nombre,apellido,clave,email,estado) values (@idtipo
 end
 go
 
-Create Procedure spInsertarTurno @fecha date, @hora varchar(5), @idpaciente int
+Create Procedure spInsertarTurno @fecha date, @hora varchar(5), @idpaciente int, @idreiki int
 as
 Begin
-insert into turnos (fecha,hora,idpaciente,idreiki,estado) values (@fecha,@hora,@idpaciente,1,'en espera')
+insert into turnos (fecha,hora,idpaciente,idreiki,estado) values (@fecha,@hora,@idpaciente,@idreiki,'en espera')
 end
 go
 
@@ -110,9 +111,9 @@ insert into tickets (idturno,idprecio,idpago,fecha) values ((Select t.id from tu
 end
 go
 
-Create Procedure spInsertarPaciente @dni int,@nombre varchar(64),@apellido varchar(64),@telefono int,@fecha date, @sexo varchar(1) 
+Create Procedure spInsertarPaciente @dni int,@nombre varchar(64),@apellido varchar(64),@telefono int,@fecha date, @sexo varchar(1),@email varchar(100), @clave varchar(100)
 as
 Begin
-insert into pacientes (dni,nombre,apellido,telefono,fechanac,sexo,estado) values (@dni,@nombre,@apellido,@telefono,@fecha,@sexo,1)
+insert into pacientes (dni,nombre,apellido,telefono,fechanac,sexo,estado,email,clave) values (@dni,@nombre,@apellido,@telefono,@fecha,@sexo,1,@email,@clave)
 end
 go

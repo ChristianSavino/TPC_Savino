@@ -68,7 +68,7 @@ public class Turnos
     {
         return con.Conexiondb();
     }
-    public int agregarTurno(Turnos cat)
+    public int agregarTurno(Turnos cat,Usuarios u)
     {
         SqlCommand Comando = new SqlCommand();
 
@@ -79,7 +79,8 @@ public class Turnos
         SqlParametros.Value = cat.getHora();
         SqlParametros = Comando.Parameters.Add("@idpaciente", SqlDbType.Int);
         SqlParametros.Value = cat.getIdPaciente();
-
+        SqlParametros = Comando.Parameters.Add("@idreiki", SqlDbType.Int);
+        SqlParametros.Value = u.getIdUsuario();
 
         return con.EjecutarSP(Comando, "spInsertarTurno");
     }

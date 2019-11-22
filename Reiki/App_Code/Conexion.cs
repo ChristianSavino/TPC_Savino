@@ -83,9 +83,10 @@ public class Conexion
             cmd.Connection = Conexion;
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = NombreSP;
-            int FilasCambiadas = int.Parse(cmd.ExecuteScalar().ToString());
+            //int FilasCambiadas = int.Parse(cmd.ExecuteScalar().ToString());
+            cmd.ExecuteScalar();
             Conexion.Close();
-            return FilasCambiadas;
+            return 1;
         }
         catch (Exception ex)
         {

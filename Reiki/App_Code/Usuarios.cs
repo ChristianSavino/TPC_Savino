@@ -124,6 +124,42 @@ public class Usuarios
         }
         return true;
     }
+
+    public Usuarios getUsuario(Usuarios us)
+    {
+        try
+        {
+            Usuarios u = new Usuarios();
+            SqlCommand cmd = new SqlCommand();
+            SqlParameter parameter = new SqlParameter();
+            parameter = cmd.Parameters.Add("@mail", SqlDbType.VarChar);
+            parameter.Value = us.getEmail();
+            parameter = cmd.Parameters.Add("@clave", SqlDbType.VarChar);
+            parameter.Value = us.getClave();
+            SqlDataReader reader = con.ObtenerReader(cmd, "Select id,idtipo,nombre,apellido,clave,email from usuarios Where email = @mail and clave = @clave and estado = 1");
+            if (reader.HasRows)
+            {
+                if (reader.Read())
+                {
+                    u.setNombre(reader.GetString(reader.GetOrdinal("nombre")));
+                    u.setApellido(reader.GetString(reader.GetOrdinal("apellido")));
+                    u.setIdUsuario(reader.GetInt32(reader.GetOrdinal("id")));
+                    u.setTipo(reader.GetInt32(reader.GetOrdinal("idtipo")));
+                    u.setEmail(reader.GetString(reader.GetOrdinal("email")));
+                    u.setClave(reader.GetString(reader.GetOrdinal("clave")));
+                    return u;
+                }
+            }
+            return null;
+            
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+    }
+
     public void getUsuarios(int tipo, string nombre, string apellido, string email, string clave)
     {
         setTipo(tipo);

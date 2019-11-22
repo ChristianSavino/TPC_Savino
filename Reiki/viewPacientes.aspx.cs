@@ -21,8 +21,15 @@ public partial class viewPacientes : System.Web.UI.Page
         if (txtApellido.Text != "" && txtDate.Text != "" && txtDni.Text != "" && txtNombre.Text != "" && txtTel.Text != "")
         {
             usr.getPaciente(int.Parse(txtDni.Text), txtNombre.Text, txtApellido.Text, int.Parse(txtTel.Text), DateTime.Parse(txtDate.Text), ddlSexo.SelectedIndex.ToString());
-
-            if (usr.agregarUsuario(usr) > 0)
+            if (usr.getSexo() == "1")
+            {
+                usr.setSexo("F");
+            }
+            else
+            {
+                usr.setSexo("M");
+            }
+            if (usr.agregarPaciente(usr) > 0)
             {
                 Response.Write("<script>alert('Usuario guardado corectamente')</script>");
                 VaciarTxt();

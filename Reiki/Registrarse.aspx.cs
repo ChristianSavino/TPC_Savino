@@ -34,4 +34,11 @@ public partial class Registrarse : System.Web.UI.Page
         txtNombre.Text = "";
         txtTel.Text = "";
     }
+
+    public void btnRegistrar_Onclick(object sender, EventArgs e)
+    {
+        Usuarios u = new Usuarios();
+        u.setNombre(txtNombre.Text);
+        u.setTipo(2);
+    }
 }

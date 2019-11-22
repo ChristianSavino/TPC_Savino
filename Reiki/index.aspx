@@ -28,7 +28,7 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button CssClass="btn btn-lg btn-block btn-outline-dark" ID="Button2" runat="server" Text="Ingresar" />
+                    <asp:Button CssClass="btn btn-lg btn-block btn-outline-dark" ID="Button2" runat="server" Text="Ingresar" OnClick="btnIngresar_Onclick"/>
                 </div>
             </div>
         </div>
