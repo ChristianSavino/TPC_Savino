@@ -29,6 +29,9 @@
                     <div class="form-group">
                         <a class="nav-link badge badge-dark" href="viewFacturas.aspx">Ver facturas</a>
                     </div>
+                                        <div class="form-group">
+                        <a class="nav-link badge badge-dark" href="ModificarPaciente.aspx">Modificar Mis Datos</a>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <a class="btn btn-outline-dark" runat="server" href="index.aspx">Salir</a>

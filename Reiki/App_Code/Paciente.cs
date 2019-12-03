@@ -125,6 +125,38 @@ public class Paciente
     {
         return con.Conexiondb();
     }
+    public int ModificarPaciente(Paciente cat)
+    {
+        try
+        {
+            SqlCommand Comando = new SqlCommand();
+
+            SqlParameter SqlParametros = new SqlParameter();
+            SqlParametros = Comando.Parameters.Add("@dni", SqlDbType.Int);
+            SqlParametros.Value = cat.getDni();
+            SqlParametros = Comando.Parameters.Add("@nombre", SqlDbType.VarChar);
+            SqlParametros.Value = cat.getNombre();
+            SqlParametros = Comando.Parameters.Add("@apellido", SqlDbType.VarChar);
+            SqlParametros.Value = cat.getApellido();
+            SqlParametros = Comando.Parameters.Add("@telefono", SqlDbType.Int);
+            SqlParametros.Value = cat.getTelefono();
+            SqlParametros = Comando.Parameters.Add("@fecha", SqlDbType.Date);
+            SqlParametros.Value = cat.getFecha();
+            SqlParametros = Comando.Parameters.Add("@sexo", SqlDbType.VarChar);
+            SqlParametros.Value = cat.getSexo();
+            SqlParametros = Comando.Parameters.Add("@email", SqlDbType.VarChar);
+            SqlParametros.Value = cat.getEmail();
+            SqlParametros = Comando.Parameters.Add("@clave", SqlDbType.VarChar);
+            SqlParametros.Value = cat.getClave();
+            string query = "Update pacientes Set dni = @dni, nombre = @nombre, apellido = @apellido, telefono = @telefono, fechanac = @fecha, sexo = @sexo, email = @email, clave = @clave where id = " + cat.getId();
+            con.ExecuteNonquery(Comando, query);
+            return 1;
+        }
+        catch (Exception ex)
+        {
+            return 0;
+        }
+    }
     public int agregarPaciente(Paciente cat)
     {
         SqlCommand Comando = new SqlCommand();

@@ -91,6 +91,33 @@ public class Usuarios
     {
         return con.Conexiondb();
     }
+
+    public int ModificarUsuario(Usuarios cat)
+    {
+        try
+        {
+            SqlCommand Comando = new SqlCommand();
+
+            SqlParameter SqlParametros = new SqlParameter();
+            SqlParametros = Comando.Parameters.Add("@idTipo", SqlDbType.Int);
+            SqlParametros.Value = cat.getTipo();
+            SqlParametros = Comando.Parameters.Add("@nombre", SqlDbType.VarChar);
+            SqlParametros.Value = cat.getNombre();
+            SqlParametros = Comando.Parameters.Add("@apellido", SqlDbType.VarChar);
+            SqlParametros.Value = cat.getApellido();
+            SqlParametros = Comando.Parameters.Add("@clave", SqlDbType.VarChar);
+            SqlParametros.Value = cat.getClave();
+            SqlParametros = Comando.Parameters.Add("@email", SqlDbType.VarChar);
+            SqlParametros.Value = cat.getEmail();
+            string query = "Update usuarios Set nombre = @nombre, apellido = @apellido, idtipo = @idTipo, clave = @clave, email = @email Where id = " + cat.getIdUsuario();
+            con.ExecuteNonquery(Comando, query);
+            return 1;
+        }
+        catch (Exception)
+        {
+            return 0;
+        }
+    }
     public int agregarUsuario(Usuarios cat)
     {
         SqlCommand Comando = new SqlCommand();

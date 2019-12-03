@@ -28,6 +28,9 @@
                         <a class="nav-link badge badge-dark" href="formulario.aspx">Estadistica</a>
                     </div>
                     <div class="form-group">
+                        <a class="nav-link badge badge-dark" href="ModificarReikis.aspx">Modificar Datos Usuario</a>
+                    </div>
+                    <div class="form-group">
                         <a class="nav-link badge badge-dark" href="viewPacientes.aspx">Agregar Paciente</a>
                     </div>
                     <div class="form-group">

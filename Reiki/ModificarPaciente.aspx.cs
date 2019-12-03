@@ -5,16 +5,35 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Registrarse : System.Web.UI.Page
+public partial class ModificarPaciente : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
             VincularSexo();
+            SetearDatos();
         }
     }
-
+    void SetearDatos()
+    {
+        Paciente p = (Paciente)Session["Paciente"];
+        txtDni.Text = p.getDni().ToString();
+        txtNombre.Text = p.getNombre();
+        txtApellido.Text = p.getApellido();
+        txtTel.Text = p.getTelefono().ToString();
+        txtDate.Text = p.getFecha().ToString();
+        if(p.getSexo() == "F")
+        {
+            ddlSexo.SelectedIndex = 1;
+        }
+        else
+        {
+            ddlSexo.SelectedIndex = 2;
+        }
+        txtMail.Text = p.getEmail();
+        txtClave.Text = p.getClave();
+    }
     private void VincularSexo()
     {
         ListItem i;
@@ -38,13 +57,13 @@ public partial class Registrarse : System.Web.UI.Page
         txtClave.Text = "";
     }
 
-    public void btnRegistrar_Onclick(object sender, EventArgs e)
+    public void btnActualizar_Onclick(object sender, EventArgs e)
     {
         try
         {
-            if(txtDni.Text != "" && txtNombre.Text != "" && txtApellido.Text != "" && txtTel.Text != "" && txtDate.Text != "" && ddlSexo.SelectedIndex != 0 && txtMail.Text != "" && txtClave.Text != "")
+            if (txtDni.Text != "" && txtNombre.Text != "" && txtApellido.Text != "" && txtTel.Text != "" && txtDate.Text != "" && ddlSexo.SelectedIndex != 0 && txtMail.Text != "" && txtClave.Text != "")
             {
-                Paciente p = new Paciente();
+                Paciente p = (Paciente)Session["Paciente"];
                 p.setDni(int.Parse(txtDni.Text));
                 p.setNombre(txtNombre.Text);
                 p.setApellido(txtApellido.Text);
@@ -60,8 +79,15 @@ public partial class Registrarse : System.Web.UI.Page
                 }
                 p.setEmail(txtMail.Text);
                 p.setClave(txtClave.Text);
-                p.agregarPaciente(p);
-                Response.Write("<script>alert('Paciente actualizado')</script>");
+                if(p.ModificarPaciente(p) > 0)
+                {
+                    Response.Write("<script>alert('Paciente actualizado')</script>");
+                    Session["Paciente"] = p;
+                }
+                else
+                {
+                    Response.Write("<script>alert('No se pudo actualizar Paciente')</script>");
+                }
             }
             else
             {
