@@ -54,14 +54,14 @@ public class Turnos
     {
         IdPaciente = id;
     }
-    public DataTable getTablaTurnos(int id)
+    public DataRow getTablaTurnos(int id)
     {
-        DataTable tabla = con.ObtenerTabla("Turnos", "select * from turnos where idpaciente=" + id);
+        DataRow tabla = con.ObtenerRow("Turnos", "select * from turnos where id=" + id);
         return tabla;
     }
     public DataTable getTurnos()
     {
-        DataTable tabla = con.ObtenerTabla("Turnos", "sselect t.id, p.dni, p.apellido + ' ' + p.nombre as 'Apellido y nombre', p.telefono, t.fecha, t.hora, t.estado from turnos as t inner join pacientes as p on p.id=t.idpaciente");
+        DataTable tabla = con.ObtenerTabla("Turnos", "select t.id as 'ids', p.dni as 'dni', p.apellido + ' ' + p.nombre as 'Apellidos', p.telefono as 'tel', t.fecha as 'fec', t.hora as 'hora', t.estado as 'estado' from turnos as t inner join pacientes as p on p.id=t.idpaciente");
         return tabla;
     }
     public SqlConnection getConexion()
@@ -100,6 +100,24 @@ public class Turnos
             parameter = cmd.Parameters.Add("@idpaciente", SqlDbType.Int);
             parameter.Value = t.getIdPaciente();
             con.ExecuteNonquery(cmd, "Update turnos set estado = 'abonado' Where estado = 'Concurrido' and idpaciente = @idpaciente");
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+
+    }
+    public void ActualizarEstado(int id, string estado)
+    {
+        try
+        {
+            SqlCommand cmd = new SqlCommand();
+            SqlParameter parameter = new SqlParameter();
+            parameter = cmd.Parameters.Add("@id", SqlDbType.Int);
+            parameter.Value = id;
+            parameter = cmd.Parameters.Add("@estado", SqlDbType.VarChar);
+            parameter.Value = estado;
+            con.ExecuteNonquery(cmd, "Update turnos set estado = @estado Where id = @id");
         }
         catch (Exception ex)
         {

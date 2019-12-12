@@ -84,6 +84,23 @@ public class Conexion
         }
 
     }
+    public DataRow ObtenerRow(String NombreTabla, String Sql)
+    {
+        DataSet dt = new DataSet();
+        try
+        {
+            SqlConnection Conexion = ObtenerConexion();
+            SqlDataAdapter adp = ObtenerAdaptador(Sql, Conexion);
+            adp.Fill(dt, NombreTabla);
+            Conexion.Close();
+            return dt.Tables[NombreTabla].Rows[0];
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+
+    }
 
     public int EjecutarSP(SqlCommand Comando, String NombreSP)
     {
