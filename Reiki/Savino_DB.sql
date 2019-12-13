@@ -68,11 +68,18 @@ create table tickets(
 )
 go
 
+create table horario(
+	horadesde int not null,
+	horahasta int not null,
+)
+go
+
 --Insert--
 --Tipos de usuarios--
 insert into tipos values('Reikista')
 --Usuarios
 insert into usuarios values(1, 'Administrador', 'General', 'vento2010', 'admingen', 1)
+insert into usuarios values(1, 'Christian', 'Savino', 'Keru18111997', 'christiansavino1811@gmail.com', 1)
 --Pacientes--
 insert into pacientes values(40834656, 'Roberto', 'Planta', 1558056089, '18/11/1997', 'M', 'elkeruforever@gmail.com','Keru18111997',1)
 insert into pacientes values(17830484, 'Matias', 'Sterzer', 21830454, '06/12/1997', 'M', 'sterzermatias@gmail.com','123456',1)
@@ -87,8 +94,10 @@ insert into pagos values('Credito')
 insert into precios values(100)
 insert into precios values(200)
 insert into precios values(300)
---Tickets-
+--Tickets--
 insert into tickets values(1, '22/10/2019', 1, 1)
+--Horarios base--
+insert into horario values(9,18)
 go
 
 Create Procedure spInsertarUsuario @idtipo int, @nombre varchar(64), @apellido varchar(64), @clave varchar(64), @email varchar(64)

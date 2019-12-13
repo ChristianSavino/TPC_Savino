@@ -42,27 +42,36 @@ public partial class viewTurnos : System.Web.UI.Page
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
-        Turnos usr = new Turnos();
-        if (txtFecha.Text != "" && txtTime.Text != "")
+        Horario h = (Horario)Session["Horario"];
+        string hora = txtTime.Text.Substring(0, 2);
+        if (int.Parse(hora) < h.GetHoraDesde() || int.Parse(hora) > (h.GetHoraHasta() - 2))
         {
-            usr.getPaciente(txtFecha.Text, txtTime.Text, ddlPacientes.SelectedIndex);
-            Usuarios u = new Usuarios();
-            u = (Usuarios)Session["Usuario"];
-
-            if (usr.agregarTurno(usr,u) > 0)
-            {
-                Response.Write("<script>alert('Turno guardado corectamente')</script>");
-                VaciarTxt();
-            }
-            else
-            {
-                Response.Write("<script>alert('No se pudo guardar el Turno')</script>");
-                VaciarTxt();
-            }
+            Response.Write("<script>alert('Horario incorrecto, este mismo debe estar entre las " + h.GetHoraDesde() + " y las " + h.GetHoraHasta() + ", el turno dura 2 horas')</script>");
         }
         else
         {
-            Response.Write("<script>alert('Se debe completar todos los campos')</script>");
+            Turnos usr = new Turnos();
+            if (txtFecha.Text != "" && txtTime.Text != "")
+            {
+                usr.getPaciente(txtFecha.Text, txtTime.Text, ddlPacientes.SelectedIndex);
+                Usuarios u = new Usuarios();
+                u = (Usuarios)Session["Usuario"];
+
+                if (usr.agregarTurno(usr, u) > 0)
+                {
+                    Response.Write("<script>alert('Turno guardado corectamente')</script>");
+                    VaciarTxt();
+                }
+                else
+                {
+                    Response.Write("<script>alert('No se pudo guardar el Turno')</script>");
+                    VaciarTxt();
+                }
+            }
+            else
+            {
+                Response.Write("<script>alert('Se debe completar todos los campos')</script>");
+            }
         }
     }
 }

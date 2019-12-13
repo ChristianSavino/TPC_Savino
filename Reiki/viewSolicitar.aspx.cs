@@ -37,28 +37,37 @@ public partial class viewSolicitar : System.Web.UI.Page
 
     protected void btnSolicitar_click(object sender, EventArgs e)
     {
-        Turnos t = new Turnos();
-        Usuarios u = new Usuarios();
-        Paciente p = new Paciente();
-        p = (Paciente)Session["Paciente"];
-        if (ddlUsuario.SelectedIndex != 0)
+        Horario h = (Horario)Session["Horario"];
+        string hora = txtTime.Text.Substring(0, 2);
+        if (int.Parse(hora) < h.GetHoraDesde() || int.Parse(hora) > (h.GetHoraHasta()-2))
         {
-            u.setIdUsuario(int.Parse(ddlUsuario.SelectedItem.Value));
-            t.setFecha(txtFecha.Text);
-            t.setHora(txtTime.Text);
-            t.setIdPaciente(p.getId());
-            if (t.agregarTurno(t,u) > 0)
-            {
-                Response.Write("<script>alert('Turno solicitado corectamente')</script>");
-            }
-            else
-            {
-                Response.Write("<script>alert('No se pudo solicitar el turno')</script>");
-            }
+            Response.Write("<script>alert('Horario incorrecto, este mismo debe estar entre las "+h.GetHoraDesde() + " y las "+ h.GetHoraHasta() +", el turno dura 2 horas')</script>");
         }
         else
         {
-            Response.Write("<script>alert('Se debe completar todos los campos')</script>");
+            Turnos t = new Turnos();
+            Usuarios u = new Usuarios();
+            Paciente p = new Paciente();
+            p = (Paciente)Session["Paciente"];
+            if (ddlUsuario.SelectedIndex != 0)
+            {
+                u.setIdUsuario(int.Parse(ddlUsuario.SelectedItem.Value));
+                t.setFecha(txtFecha.Text);
+                t.setHora(txtTime.Text);
+                t.setIdPaciente(p.getId());
+                if (t.agregarTurno(t, u) > 0)
+                {
+                    Response.Write("<script>alert('Turno solicitado corectamente')</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('No se pudo solicitar el turno')</script>");
+                }
+            }
+            else
+            {
+                Response.Write("<script>alert('Se debe completar todos los campos')</script>");
+            }
         }
     }
 }

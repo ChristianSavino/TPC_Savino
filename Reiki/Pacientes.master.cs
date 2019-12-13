@@ -9,6 +9,8 @@ public partial class Pacientes : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Horario h = new Horario();
+        h = h.GetHorario();
+        Session["Horario"] = h;
     }
 }

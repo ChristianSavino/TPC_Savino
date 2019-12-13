@@ -61,7 +61,7 @@ public partial class Registrarse : System.Web.UI.Page
                 p.setEmail(txtMail.Text);
                 p.setClave(txtClave.Text);
                 p.agregarPaciente(p);
-                Response.Write("<script>alert('Paciente actualizado')</script>");
+                Response.Write("<script>alert('Se Registró correctamente')</script>");
             }
             else
             {
@@ -71,7 +71,7 @@ public partial class Registrarse : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Write("<script>alert('Hubo un problema al actualizar el paciente')</script>");
+            Response.Write("<script>alert('Hubo un problema al registrarse')</script>");
             throw;
         }
 

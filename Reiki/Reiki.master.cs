@@ -13,6 +13,11 @@ public partial class Reiki : System.Web.UI.MasterPage
     public string ChartData2 = null;
     protected void Page_Load(object sender, EventArgs e)
     {
+        Horario h = new Horario();
+        h = h.GetHorario();
+        Session["Horario"] = h;
+
+
         Estadistica es = new Estadistica();
         DataTable personas = es.getPersonas();
         DataTable recaudado = es.getRecaudo();

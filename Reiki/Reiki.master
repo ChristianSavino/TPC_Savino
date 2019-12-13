@@ -22,6 +22,9 @@
                 <h5 class="text-white h4">Opciones</h5>
                 <div class="modal-body">
                     <div class="form-group">
+                        <a class="nav-link badge badge-dark" href="Parametros.aspx">Modificar Horarios</a>
+                    </div>
+                    <div class="form-group">
                         <a class="nav-link badge badge-dark" href="home.aspx">Pagina Inicio</a>
                     </div>
                     <div class="form-group">
@@ -76,7 +79,7 @@
         var myLineChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio", "Agosto", "Septiembre", "Octubre", "Nobiembre", "Diciembre"],
+                labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Nobiembre", "Diciembre"],
                 datasets: [{
                     label: "Total",
                     backgroundColor: "rgba(2,117,216,1)",
