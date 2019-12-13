@@ -9,7 +9,8 @@ public partial class verTickets : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Usuarios u = (Usuarios)Session["Usuario"];
+        SqlDataSource1.SelectCommand += u.getIdUsuario().ToString();
     }
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
     {

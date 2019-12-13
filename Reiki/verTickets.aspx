@@ -10,7 +10,7 @@
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
             </div>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConflictDetection="CompareAllValues" ConnectionString="<%$ ConnectionStrings:Savino_DBConnectionString %>" DeleteCommand="DELETE FROM [tickets] WHERE [id] = @original_id AND [idturno] = @original_idturno AND [fecha] = @original_fecha AND [idpago] = @original_idpago AND [idprecio] = @original_idprecio" InsertCommand="INSERT INTO [tickets] ([idturno], [fecha], [idpago], [idprecio]) VALUES (@idturno, @fecha, @idpago, @idprecio)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT t.id, t.idturno, t.fecha, p.nombre, s.precio FROM tickets AS t INNER JOIN pagos AS p ON p.id = t.idpago INNER JOIN precios AS s ON s.id = t.idprecio" UpdateCommand="UPDATE [tickets] SET [idturno] = @idturno, [fecha] = @fecha, [idpago] = @idpago, [idprecio] = @idprecio WHERE [id] = @original_id AND [idturno] = @original_idturno AND [fecha] = @original_fecha AND [idpago] = @original_idpago AND [idprecio] = @original_idprecio">
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConflictDetection="CompareAllValues" ConnectionString="<%$ ConnectionStrings:Savino_DBConnectionString %>" DeleteCommand="DELETE FROM [tickets] WHERE [id] = @original_id AND [idturno] = @original_idturno AND [fecha] = @original_fecha AND [idpago] = @original_idpago AND [idprecio] = @original_idprecio" InsertCommand="INSERT INTO [tickets] ([idturno], [fecha], [idpago], [idprecio]) VALUES (@idturno, @fecha, @idpago, @idprecio)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT tc.id, tc.idturno, tc.fecha, p.nombre, s.precio FROM tickets tc INNER JOIN pagos p ON p.id = tc.idpago INNER JOIN precios s ON s.id = tc.idprecio INNER JOIN turnos t on tc.idturno = t.id WHERE t.idreiki = " UpdateCommand="UPDATE [tickets] SET [idturno] = @idturno, [fecha] = @fecha, [idpago] = @idpago, [idprecio] = @idprecio WHERE [id] = @original_id AND [idturno] = @original_idturno AND [fecha] = @original_fecha AND [idpago] = @original_idpago AND [idprecio] = @original_idprecio">
                 <DeleteParameters>
                     <asp:Parameter Name="original_id" Type="Int64" />
                     <asp:Parameter Name="original_idturno" Type="Int64" />
@@ -39,11 +39,11 @@
             <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1" CssClass="table" OnRowCommand="GridView1_RowCommand">
                 <Columns>
                     <asp:CommandField ShowSelectButton="True" />
-                    <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" />
-                    <asp:BoundField DataField="idturno" HeaderText="idturno" SortExpression="idturno" />
-                    <asp:BoundField DataField="fecha" HeaderText="fecha" SortExpression="fecha" />
-                    <asp:BoundField DataField="nombre" HeaderText="nombre" SortExpression="nombre" />
-                    <asp:BoundField DataField="precio" HeaderText="precio" SortExpression="precio" />
+                    <asp:BoundField DataField="id" HeaderText="Ticket Numero" InsertVisible="False" ReadOnly="True" SortExpression="id" />
+                    <asp:BoundField DataField="idturno" HeaderText="Numero Turno" SortExpression="idturno" />
+                    <asp:BoundField DataField="fecha" HeaderText="Fecha" SortExpression="fecha" />
+                    <asp:BoundField DataField="nombre" HeaderText="Forma Pago" SortExpression="nombre" />
+                    <asp:BoundField DataField="precio" HeaderText="Precio" SortExpression="precio" />
                 </Columns>
                 <HeaderStyle CssClass="table-primary" />
             </asp:GridView>

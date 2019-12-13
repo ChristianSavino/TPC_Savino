@@ -12,6 +12,7 @@ public partial class home : System.Web.UI.Page
         Usuarios u = new Usuarios();
         u = (Usuarios)Session["Usuario"];
         string text = "Bievenido Reikista: " + u.getNombre() + "!";
+        SqlDataSource2.SelectCommand += u.getIdUsuario().ToString();
         welcometext.Text = text;
         u = null;
         text = null;

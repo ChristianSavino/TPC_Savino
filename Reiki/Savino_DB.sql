@@ -108,7 +108,7 @@ go
 Create Procedure spInsertarTicket @id bigint, @precio int, @pago int
 as
 Begin
-insert into tickets (idturno,idprecio,idpago,fecha) values ((Select t.id from turnos t left join pacientes p on t.idpaciente = p.id where p.id = @id),@precio,@pago,GETDATE())
+insert into tickets (idturno,idprecio,idpago,fecha) values ((Select top 1 t.id from turnos t left join pacientes p on t.idpaciente = p.id where p.id = @id and t.estado = 'concurrido' order by t.fecha asc),@precio,@pago,GETDATE())
 end
 go
 

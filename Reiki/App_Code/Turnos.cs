@@ -59,9 +59,9 @@ public class Turnos
         DataRow tabla = con.ObtenerRow("Turnos", "select * from turnos where id=" + id);
         return tabla;
     }
-    public DataTable getTurnos()
+    public DataTable getTurnos(int id)
     {
-        DataTable tabla = con.ObtenerTabla("Turnos", "select t.id as 'ids', p.dni as 'dni', p.apellido + ' ' + p.nombre as 'Apellidos', p.telefono as 'tel', t.fecha as 'fec', t.hora as 'hora', t.estado as 'estado' from turnos as t inner join pacientes as p on p.id=t.idpaciente");
+        DataTable tabla = con.ObtenerTabla("Turnos", "select t.id as 'ids', p.dni as 'dni', p.apellido + ' ' + p.nombre as 'Apellidos', p.telefono as 'tel', t.fecha as 'fec', t.hora as 'hora', t.estado as 'estado' from turnos as t inner join pacientes as p on p.id=t.idpaciente WHERE t.idreiki = " + id.ToString());
         return tabla;
     }
     public SqlConnection getConexion()

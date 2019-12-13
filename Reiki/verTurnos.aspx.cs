@@ -19,7 +19,8 @@ public partial class verTurnos : System.Web.UI.Page
 
     private void cargarGridView()
     {
-        gvTurnos.DataSource = gTurnos.getTurnos();
+        Usuarios u = (Usuarios)Session["Usuario"];
+        gvTurnos.DataSource = gTurnos.getTurnos(u.getIdUsuario());
         gvTurnos.DataBind();
     }
 

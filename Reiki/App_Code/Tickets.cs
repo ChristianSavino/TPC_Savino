@@ -111,7 +111,7 @@ public class Tickets
             SqlParameter parameter = new SqlParameter();
             parameter = cmd.Parameters.Add("@id", SqlDbType.BigInt);
             parameter.Value = long.Parse(id.ToString());
-            SqlDataReader reader = con.ObtenerReader(cmd, "Select id, fecha, Convert(int,(select p.precio from precios p where p.id = idprecio)) as 'precio' from tickets where idturno = @id");
+            SqlDataReader reader = con.ObtenerReader(cmd, "Select id, fecha, Convert(int,(select p.precio from precios p where p.id = idprecio)) as 'precio' from tickets where id = @id");
             if (reader.HasRows)
             {
                 if (reader.Read())

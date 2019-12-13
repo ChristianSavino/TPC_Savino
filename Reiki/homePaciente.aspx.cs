@@ -7,10 +7,14 @@ using System.Web.UI.WebControls;
 
 public partial class homePaciente : System.Web.UI.Page
 {
+    
+
     protected void Page_Load(object sender, EventArgs e)
     {
         Paciente p = new Paciente();
         p = (Paciente)Session["Paciente"];
+        SqlDataSource1.SelectCommand += p.getId().ToString();
+        SqlDataSource2.SelectCommand += p.getId().ToString();
         string text = "Bievenido Paciente: " + p.getNombre() + "!";
         welcometext.Text = text;
         p = null;

@@ -84,6 +84,7 @@ public partial class viewPagos : System.Web.UI.Page
             {
                 t.ActualizarMarca(t);
                 Response.Write("<script>alert('Pago guardado corectamente')</script>");
+                Response.Redirect("VerTickets.aspx");
             }
             else
             {

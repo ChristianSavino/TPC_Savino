@@ -11,12 +11,13 @@ public partial class verTicketm : System.Web.UI.Page
     {
         int id = int.Parse(Session["idfactura"].ToString());
         Tickets tck = new Tickets();
+        Paciente paciente = (Paciente)Session["Paciente"];
         tck = tck.getTicketImpresion(id);
 
         lblNumero.Text = tck.getId().ToString();
         lblFecha.Text = DateTime.Now.Date.ToString();
-        lblId.Text = tck.getIdPaciente().ToString();//Id del paciente
-        lblNombre.Text = tck.getNombre();//Nombre y apellido del paciente
+        lblId.Text = paciente.getId().ToString();//Id del paciente
+        lblNombre.Text = paciente.getNombre()+" "+ paciente.getApellido();//Nombre y apellido del paciente
         lblTotal.Text = "$" + tck.getPrecio().ToString();
 
         //numTicket.Text = "TICKET NUMERO: " + tck.getId();

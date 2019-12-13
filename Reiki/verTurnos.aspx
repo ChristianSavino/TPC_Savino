@@ -61,7 +61,7 @@
     <asp:GridView ID="gvTurnos" runat="server" OnPageIndexChanging="Paginar" AutoGenerateColumns="false" OnRowEditing="gvTurnos_RowEditing" OnRowCancelingEdit="gvTurnos_RowCancelingEdit" OnRowUpdating="gvTurnos_RowUpdating" CssClass="table" DataKeyNames="ids">
         <Columns>
             <asp:CommandField ShowEditButton="True" />
-            <asp:TemplateField HeaderText="Id">
+            <asp:TemplateField HeaderText="Turno Numero">
                 <ItemTemplate>
                     <asp:Label ID="id" runat="server" Text='<%# Bind("ids") %>'></asp:Label>
                 </ItemTemplate>
